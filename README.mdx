@@ -1,0 +1,82 @@
+# Import Data from CRM
+
+The documentation is about the current import system it need to be simplified and factorized
+
+<font color="brown">can be factorized </font>
+
+## Step 1 Oauth management
+
+- <font color="brown">Create endpoint to retreive oauth2 url connection</font>
+- <font color="brown">Create a new table for the CRM Connection</font>
+- <font color="brown">Create a callback endpoint for oauth2</font>
+
+  - <font color="brown"> Save the object</font>
+  - <font color="brown"> Manage if already existing connection</font>
+  - <font color="brown"> Reactivate if soft deleted</font>
+
+- Create a delete endpoint for oauth2
+  <font color="brown">Soft delete</font>
+
+## Step 2 Schema management
+
+- <font color="brown">Create a new table for the CRM schema</font>
+- <font color="brown">
+    Edit table sheet to add the field for this CRM schema
+  </font>
+- Endpoint to retrieve all table in the CRM
+- Endpoint to retrieve all fields and metadata for a CRM table
+- <font color="brown">
+    Endpoint to create / edit new import schema (link to one connection)
+  </font>
+
+  - <font color="brown"> Save the object </font>
+  - <font color="brown"> Reactivate if soft deleted </font>
+  - <font color="brown"> Implement a before save hook to </font>
+    ensure the presence of the id in the import schema{" "}
+  - <font color="brown"> Implement an after save </font>
+    hook to create / delete / edit all business object{" "}
+  - <font color="brown"> Import the data </font>
+
+## Step 3 Other endpoint and helper
+
+- Create an endpoint to get all users from the user table of the CRM
+- <font color="brown">
+    Create an endpoint to retrieve all import schema for one connection
+  </font>
+- <font color="brown">Create an endpoint to retrieve a import schema</font>
+- Create the helper to instanciate connection
+  - Refresh token if necessary
+
+## Step 4 import the data
+
+Each import schema is linked to one connection and one sheet
+
+- Implement a function who from an import schema scan the CRM and format the data
+  - Check if soft deleted import schema
+  - Check if soft deleted connection
+  - Based on last import date
+  - Format data for clickhouse / insert it
+- <font color="brown">
+    Implement a function who scan all sheets linked to one type of CRM for a
+    company and use the previous function to import it
+  </font>
+
+- <font color="brown">Add it to the cron</font>
+
+- <font color="brown">
+    Create an endpoint to force the import for one organization
+  </font>
+- <font color="brown">
+    Edit one endpoint with the new field for import schema
+  </font>
+
+---
+
+### Other point who need reflexion
+
+- Queuing
+- Smart retry
+- Check on api limit
+- Maybe pass by webhooks / problem all CRM doesn't support it
+- How to get updated and informed on all CRM's api changes
+- The need for one library for each CRM
