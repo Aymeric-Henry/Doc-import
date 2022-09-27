@@ -10,32 +10,26 @@ _can be factorized_
 - _Create a new table for the CRM Connection_
 - _Create a callback endpoint for oauth2_
 
-  - _ Save the object_
-  - _ Manage if already existing connection_
-  - _ Reactivate if soft deleted_
+  - _Save the object_
+  - _Manage if already existing connection_
+  - _Reactivate if soft deleted_
 
 - Create a delete endpoint for oauth2
-  _Soft delete_
+  - _Soft delete_
 
 ## Step 2 Schema management
 
 - _Create a new table for the CRM schema_
-- _
-  Edit table sheet to add the field for this CRM schema
-  _
+- _Edit table sheet to add the field for this CRM schema_
 - Endpoint to retrieve all table in the CRM
 - Endpoint to retrieve all fields and metadata for a CRM table
-- _
-  Endpoint to create / edit new import schema (link to one connection)
-  _
+- _Endpoint to create / edit new import schema (link to one connection)_
 
-  - _ Save the object_
-  - _ Reactivate if soft deleted_
-  - _ Implement a before save hook to_
-    ensure the presence of the id in the import schema{" "}
-  - _ Implement an after save_
-    hook to create / delete / edit all business object{" "}
-  - _ Import the data_
+  - _Save the object_
+  - _Reactivate if soft deleted_
+  - _Implement a before save hook to ensure the presence of the id in the import schema_
+  - _Implement an after save hook to create / delete / edit all business object_
+  - _Import the data_
 
 ## Step 3 Other endpoint and helper
 
